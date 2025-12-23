@@ -1,17 +1,31 @@
+/*** includes ***/
+
 #include <unistd.h>
 #include <termios.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <stdio.h>
+#include <errno.h>
+
+/*** data ***/
 
 struct termios orig_termios;
 
+/*** terminal ***/
+
+void die(const char *s) {
+  perror(s);
+  exit(1);
+}
+
 void disableRawMode() {
-  tcsetattr(STDIN_FILENO, TCSAFLUSH, &orig_termios);
+  if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &orig_termios) == -1) {
+    die("tcsetattr");
+  }
 }
 
 void enableRawMode() {
-  tcgetattr(STDIN_FILENO, &orig_termios);
+  if (tcgetattr(STDIN_FILENO, &orig_termios) == -1) die("tcgetattr");
   atexit(disableRawMode);
 
   //Saves old setting and copys to raw struct
@@ -48,15 +62,18 @@ void enableRawMode() {
   // VTIME is max amount of time to wait before read returns it is is 10ths of a second or 100 milliseconds
   raw.c_cc[VMIN] = 0;
   raw.c_CC[VTIME] = 1;
-  tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
+  if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw) == -1) die("tcsetattr");
 }
+
+/*** init ***/
 
 int 
 main() {
   enableRawMode();
   while(1) {
     char c = '\0';
-    read(STDIN_FILENO, &c, 1)
+    // In Cygwin if read time out it returns neg 1 with EAGAIN set, we check for this weird case
+    if (read(STDIN_FILENO, &c, 1) == -1 && errno != EAGAIN) die("read");
     if (iscntrl(c)) {
       printf("%d\r\n", c);
     } else {
