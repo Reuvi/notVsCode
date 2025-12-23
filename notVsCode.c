@@ -61,7 +61,7 @@ void enableRawMode() {
   // VMIN sets min number of bytes needed before read can return
   // VTIME is max amount of time to wait before read returns it is is 10ths of a second or 100 milliseconds
   raw.c_cc[VMIN] = 0;
-  raw.c_CC[VTIME] = 1;
+  raw.c_cc[VTIME] = 1;
   if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw) == -1) die("tcsetattr");
 }
 
