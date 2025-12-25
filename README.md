@@ -17,14 +17,14 @@ Works on Linux Enviroments. (any linux distro, macOS, windows wsl)
 
 # Features
 
-\*Cntl-L to quit.
+\-Cntl-L to quit.
 
-\*Arrow Up, Down, Left, Right to move around cursor.
+\-Arrow Up, Down, Left, Right to move around cursor.
 
-\* Pg-Up (and Mac varients) to bring cursor to top of screen.
+\-Pg-Up (and Mac varients) to bring cursor to top of screen.
 
-\* Pg-Down (and Mac varients) to bring cursor to bottom of screen.
+\-Pg-Down (and Mac varients) to bring cursor to bottom of screen.
 
-\* Home (and Mac varients) to bring cursor to left-end of screen.
+\-Home (and Mac varients) to bring cursor to left-end of screen.
 
-\* End (and Mac varients) to bring cursor to right-end of screen.
+\-End (and Mac varients) to bring cursor to right-end of screen.
