@@ -28,3 +28,5 @@ Works on Linux Enviroments. (any linux distro, macOS, windows wsl)
 \-Home (and Mac varients) to bring cursor to left-end of screen.
 
 \-End (and Mac varients) to bring cursor to right-end of screen.
+
+\-./notVsCode <optional-fileName> opens a file with path fileName. If filename is excluded creates new FD for you to save a name to on exit.
