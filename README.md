@@ -29,4 +29,4 @@ Works on Linux Enviroments. (any linux distro, macOS, windows wsl)
 
 \-End (and Mac varients) to bring cursor to right-end of screen.
 
-\-./notVsCode <optional-fileName> opens a file with path fileName. If filename is excluded creates new FD for you to save a name to on exit.
+\-./notVsCode fileName opens a file with path fileName. If fileName is excluded creates new FD for you to save a name to on exit.
