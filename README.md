@@ -1,6 +1,6 @@
 # notVsCode
 
-A command line text editor to replace vscode.
+A command line text editor that is not vscode.
 
 # Implementation
 
