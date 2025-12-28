@@ -21,6 +21,8 @@ Works on Linux Enviroments. (any linux distro, macOS, windows wsl)
 
 \*Error handling present throughout for smooth exit.
 
+\* Status Bar and Status Message appended to bottom of text editor with action/file information.
+
 # Features
 
 \-Cntl-L to quit.
