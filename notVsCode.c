@@ -47,6 +47,7 @@ typedef struct erow {
 
 struct editorConfig {
   int cx, cy;
+  int rx;
   int rowoff;
   int coloff;
   int screenrows;
@@ -206,6 +207,19 @@ int getWindowSize(int *rows, int *cols) {
 
 /*** row operations ***/
 
+// If their was a tab in the character array and we move to the next character
+// We want to jump the length of the tab
+int editorRowCxToRx(erow *row, int cx) {
+  int rx = 0;
+  int j;
+  for (j = 0; j < cx; j++) {
+    if (row->chars[j] == '\t')
+      rx += (NOTVSCODE_TAB_STOP - 1) - (rx % NOTVSCODE_TAB_STOP);
+    rx++;
+  }
+  return rx;
+}
+
 void editorUpdateRow(erow *row) {
   int tabs = 0;
   int j;
@@ -291,17 +305,22 @@ void abFree(struct abuf *ab) {
 /*** Output ***/
 
 void editorScroll() {
+  E.rx = E.cx;
+  if (E.cy < E.numrows) {
+    E.rx = editorRowCxToRx(&E.row[E.cy], E.cx);
+  }
+
   if (E.cy < E.rowoff) {
     E.rowoff = E.cy;
   }
   if (E.cy >= E.rowoff + E.screenrows) {
     E.rowoff = E.cy - E.screenrows + 1;
   }
-  if (E.cx < E.coloff) {
-    E.coloff = E.cx;
+  if (E.rx < E.coloff) {
+    E.coloff = E.rx;
   }
-  if (E.cx >= E.coloff + E.screencols) {
-    E.coloff = E.cx - E.screencols + 1;
+  if (E.rx >= E.coloff + E.screencols) {
+    E.coloff = E.rx - E.screencols + 1;
   }
 }
 
@@ -351,7 +370,7 @@ void editorRefreshScreen() {
   editorDrawRows(&ab);
 
   char buf[32];
-  snprintf(buf, sizeof(buf), "\x1b[%d;%dH", (E.cy - E.rowoff) + 1, (E.cx - E.coloff) + 1); // The plus 1 converts to terminal 1 index values instead of our 0 indexed
+  snprintf(buf, sizeof(buf), "\x1b[%d;%dH", (E.cy - E.rowoff) + 1, (E.rx - E.coloff) + 1); // The plus 1 converts to terminal 1 index values instead of our 0 indexed
   abAppend(&ab, buf, strlen(buf));
 
   //abAppend(&ab, "\x1b[H", 3);
@@ -396,7 +415,7 @@ void editorMoveCursor(int key) {
       break;
   }
 
-  //For when you at the end of a line and go down
+  //For when you at the end of a line and go down or up
   row = (E.cy >= E.numrows) ? NULL : &E.row[E.cy];
   int rowlen = row ? row->size : 0;
   if (E.cx > rowlen) {
@@ -447,6 +466,7 @@ void
 initEditor() {
   E.cx = 0;
   E.cy = 0;
+  E.rx = 0;
   E.rowoff = 0;
   E.coloff = 0;
   E.numrows = 0;
