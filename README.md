@@ -23,9 +23,15 @@ Works on Linux Enviroments. (any linux distro, macOS, windows wsl)
 
 \* Status Bar and Status Message appended to bottom of text editor with action/file information.
 
+\* Standard writing in a text editor implementation.
+
 # Features
 
-\-Cntl-L to quit.
+\-Ctrl-K to quit.
+
+\-Ctrl-S to save.
+
+\-Ctrl-L to refresh.
 
 \-Arrow Up, Down, Left, Right to move around cursor.
 
@@ -37,4 +43,14 @@ Works on Linux Enviroments. (any linux distro, macOS, windows wsl)
 
 \-End (and Mac varients) to bring cursor to right-end of text line.
 
-\-./notVsCode fileName opens a file with path fileName. If fileName is excluded creates new FD for you to save a name to on exit.
+\-./notVsCode fileName opens a file with path fileName. If filename occluded, editor will prompt for you to save it with a selected filename on save.
+
+\-Return creates a new line.
+
+\-Backspace deletes the previous character.
+
+\-DEL key deletes the character highlighted by the cursor.
+
+# Attribution
+
+Original project followed this snaptoken book before I customized it -> https://viewsourcecode.org/snaptoken/kilo/index.html
