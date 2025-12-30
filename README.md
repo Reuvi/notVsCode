@@ -2,36 +2,47 @@
 
 A command line text editor that is not vscode.
 
-# Implementation
+## Technical Highlights
 
-Written in C.
-Works on Linux Enviroments. (any linux distro, macOS, windows wsl)
+- Manual terminal raw-mode configuration. (no ncurses)
+- Full ANSI escape-sequence parsing for navigation and cursor control.
+- Single-frame render pipeline using a custom append buffer. (one write() sys call per refresh)
+- Dual row representation. (raw text buffer and a rendered buffer)
+- Precise cursor math with tab expansion and render-space mapping.
+- Viewport-aware rendering with horizontal and vertical scrolling.
+- Guaranteed terminal state restoration on exit or error.
 
-\*Terminal set to 'Raw Mode'.
+### Editor Safety and UX
 
-\*Refreshes screen after every input using one call to write. (custom append buffer made for processing)
+- Multi-step quit confirmation when unsaved changes exist.
+- Status bar and timed status messages for user feedback.
+- Graceful recovery from I/O or terminal failures.
+- Cursor position preserved across searches and canceled prompts.
 
-\*Rendered rows formated from configurable presets of special characters in the text buffer.
+### Search
 
-\*Horizontal and Vertical scrolling.
+- Live incremental search while typing.
+- Directional navigation through matches using arrow keys.
+- Search state resets cleanly on exit or cancel.
 
-\*Horizontal and Vertical cursor line jumping at end of lines.
+### Terminal Compatibility
 
-\*Processes keycodes based on their raw value including escape codes. (multi-byte sequences)
+- Works across Linux terminals, macOS terminals, and Windows WSL
+- Fallback cursor position detection using ANSI queries when `ioctl` fails.
+- Handles multi-byte escape sequences for special keys. (arrows, page keys, home/end)
 
-\*Error handling present throughout for smooth exit.
+### Rendering Model
 
-\*Status Bar and Status Message appended to bottom of text editor with action/file information.
+- Flicker-free rendering via off-screen buffering.
+- Seperate logical cursor position and rendered cursor position.
 
-\*Standard writing in a text editor implementation.
+### File Handling
 
-# Search
+- Safe file loading with newline normalization
+- Atomic save behavior using truncate-then-write
+- Dirty-state tracking to detect unsaved changes.
 
-\*Incremental search activated with Ctrl-N.
-
-\*Can use arrow keys to find next match of query if a match exists.
-
-# Features
+# Controls
 
 \-Ctrl-K to quit.
 
@@ -61,6 +72,11 @@ Works on Linux Enviroments. (any linux distro, macOS, windows wsl)
 
 \-DEL key deletes the character highlighted by the cursor.
 
+## Why Did I make this?
+
+- I wanted to understand how real text editors work at the terminal level.
+- Focussed on low-level input handling, rendering, and memory management.
+
 # Attribution
 
-Original project followed this snaptoken book before I customized it -> https://viewsourcecode.org/snaptoken/kilo/index.html
+I followed this snaptoken book/walkthrough before I customized it -> https://viewsourcecode.org/snaptoken/kilo/index.html
