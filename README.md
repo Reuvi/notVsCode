@@ -25,6 +25,8 @@ Works on Linux Enviroments. (any linux distro, macOS, windows wsl)
 
 \* Standard writing in a text editor implementation.
 
+\* Created simple incremental search.
+
 # Features
 
 \-Ctrl-K to quit.
@@ -32,6 +34,8 @@ Works on Linux Enviroments. (any linux distro, macOS, windows wsl)
 \-Ctrl-S to save.
 
 \-Ctrl-L to refresh.
+
+\-Ctrl-N to search.
 
 \-Arrow Up, Down, Left, Right to move around cursor.
 
