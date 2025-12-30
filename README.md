@@ -4,6 +4,8 @@ A command line text editor that is not vscode.
 
 ## Technical Highlights
 
+### Overview
+
 - Manual terminal raw-mode configuration. (no ncurses)
 - Full ANSI escape-sequence parsing for navigation and cursor control.
 - Single-frame render pipeline using a custom append buffer. (one write() sys call per refresh)
