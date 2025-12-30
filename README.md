@@ -21,11 +21,15 @@ Works on Linux Enviroments. (any linux distro, macOS, windows wsl)
 
 \*Error handling present throughout for smooth exit.
 
-\* Status Bar and Status Message appended to bottom of text editor with action/file information.
+\*Status Bar and Status Message appended to bottom of text editor with action/file information.
 
-\* Standard writing in a text editor implementation.
+\*Standard writing in a text editor implementation.
 
-\* Created simple incremental search.
+# Search
+
+\*Incremental search activated with Ctrl-N.
+
+\*Can use arrow keys to find next match of query if a match exists.
 
 # Features
 
@@ -37,6 +41,8 @@ Works on Linux Enviroments. (any linux distro, macOS, windows wsl)
 
 \-Ctrl-N to search.
 
+\-ESC used to exit the editorPrompt in most scenarios.
+
 \-Arrow Up, Down, Left, Right to move around cursor.
 
 \-Pg-Up (and Mac varients) to bring cursor to top of prev page (or top of first page).
@@ -47,7 +53,7 @@ Works on Linux Enviroments. (any linux distro, macOS, windows wsl)
 
 \-End (and Mac varients) to bring cursor to right-end of text line.
 
-\-./notVsCode fileName opens a file with path fileName. If filename occluded, editor will prompt for you to save it with a selected filename on save.
+\-./notVsCode fileName opens a file with path fileName. If filename occluded, editor will prompt for you to create a fileName for it.
 
 \-Return creates a new line.
 
