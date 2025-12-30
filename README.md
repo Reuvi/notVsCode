@@ -30,7 +30,7 @@ A command line text editor that is not vscode.
 ### Terminal Compatibility
 
 - Works across Linux terminals, macOS terminals, and Windows WSL
-- Fallback cursor position detection using ANSI queries when `ioctl` fails.
+- Fallback screen size detection using ANSI queries when `ioctl` fails.
 - Handles multi-byte escape sequences for special keys. (arrows, page keys, home/end)
 
 ### Rendering Model
@@ -40,8 +40,8 @@ A command line text editor that is not vscode.
 
 ### File Handling
 
-- Safe file loading with newline normalization
-- Atomic save behavior using truncate-then-write
+- Safe file loading with newline normalization.
+- Atomic save behavior using truncate-then-write.
 - Dirty-state tracking to detect unsaved changes.
 
 # Controls
