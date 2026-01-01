@@ -13,6 +13,7 @@ A command line text editor that is not vscode.
 - Precise cursor math with tab expansion and render-space mapping.
 - Viewport-aware rendering with horizontal and vertical scrolling.
 - Guaranteed terminal state restoration on exit or error.
+- Syntax Highlighting
 
 ### Editor Safety and UX
 
@@ -43,6 +44,23 @@ A command line text editor that is not vscode.
 - Safe file loading with newline normalization.
 - Atomic save behavior using truncate-then-write.
 - Dirty-state tracking to detect unsaved changes.
+
+### Syntax Highlighting
+
+- Filetype-aware syntax highlighting with automatic detection based on file extention.
+- Keyword highligting differentiating language keywords and built in types.
+- Single-line and multi-line comment highlighting.
+- String literal highlighting with escape-sequence awareness.
+- Numeric literal highlighting including decimals.
+- Function name highlighting on call sites.
+- Enclosing character highlighting for `()`, `{}`, and `[]`.
+- Search match highlighting.
+- Highlight state stored per rendered row for efficient redraws.
+
+##### Suported Languages
+
+- C (.c, .h)
+- C++ (.cpp)
 
 # Controls
 
