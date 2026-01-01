@@ -1,0 +1,15 @@
+Future planned Updates:
+
+auto-indent
+better search
+more color options
+javascript, and python syntax highligting
+more accepted file types
+config file
+line numbers
+vim motions
+copy and paste
+undo-redo
+dynamic syntax highlighting with variables
+multiple file buffers for file switching
+cleanup with valgrind to check
